@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Build Status]( https://github.com/cpq/bare-metal-programming-guide/workflows/build/badge.svg)](https://github.com/cpq/bare-metal-programming-guide/actions)
 
-English | [中文](README_zh-CN.md)
+English | [中文](README_zh-CN.md) | [Türkçe](README_tr-TR.md)
 
 This guide is written for developers who wish to start programming
 microcontrollers using a GCC compiler and a datasheet, without using any
@@ -14,25 +14,27 @@ Every chapter in this guide comes with a complete source code which gradually
 progress in functionality and completeness. In the end, I provide bare metal
 template projects for different architectures:
 
-- **blinky** - classic, blink an LED and print a debug message periodically:
+- **blinky** - classic, blink an LED and print a debug message periodically
 - **cli** - UART command line interface. Implements commands to set LED status and hexdump RAM
-- **lfs** - implement file functions `mkdir()/opendir()/...`,
-  `fopen()/fprintf()/...` using
+- **lfs** - implement file functions `mkdir(),readdir(),fopen(),...` using
   [littlefs](https://github.com/littlefs-project/littlefs) in the upper
   region of buit-in flash memory. Store device boot
-  count in a file, increment on each boot, and print on debug log
+  count in a file, increment on each boot, and print periodically
 - **webui** - embedded web server with a professional device dashboard UI
   using [mongoose library](https://github.com/cesanta/mongoose)
 
-| Board | MCU datasheet | Board datasheet | Template project |
-| ----- | ------------- | --------------- | ---------------- |
-| STM32 Nucleo-F429ZI | [mcu datasheet](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf) | [board datasheet](https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-mb1137-stmicroelectronics.pdf) | [blinky](templates/blinky/nucleo-f429zi), [cli](templates/cli/nucleo-f429zi), [webui](step-7-webserver/nucleo-f429zi/) |
-| STM32 Nucleo-L432KC | [mcu datasheet](https://www.st.com/resource/en/reference_manual/dm00151940-stm32l41xxx42xxx43xxx44xxx45xxx46xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf) | [board datasheet](https://www.st.com/resource/en/datasheet/stm32l432kc.pdf) | [blinky](templates/blinky/nucleo-l432kc), [cli](templates/cli/nucleo-l432kc), [lfs](templates/lfs/nucleo-l432kc) |
-| TI EK-TM4C1294XL | [mcu datasheet](https://www.ti.com/lit/ds/symlink/tm4c1294ncpdt.pdf) | [board datasheet](https://www.ti.com/lit/ug/spmu365c/spmu365c.pdf) | [webui](step-7-webserver/ek-tm4c1294xl) | 
-| RP2040 Pico-W5500 | [mcu datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf) | [board datasheet](https://docs.wiznet.io/Product/iEthernet/W5500/w5500-evb-pico) | [webui](step-7-webserver/pico-w5500/) |
+| Board | Arch | MCU datasheet | Board datasheet | Template project |
+| ----- | ---- | ------------- | --------------- | ---------------- |
+| STM32 Nucleo-F429ZI | Cortex-M4  | [mcu datasheet](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf) | [board datasheet](https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-mb1137-stmicroelectronics.pdf) | [blinky](templates/blinky/nucleo-f429zi), [cli](templates/cli/nucleo-f429zi), [webui](steps/step-7-webserver/nucleo-f429zi/) |
+| STM32 Nucleo-F303K8 | Cortex-M4  | [mcu datasheet](https://www.st.com/resource/en/reference_manual/DM00043574-.pdf) | [board datasheet](https://www.st.com/resource/en/datasheet/stm32f303k8.pdf) | [lfs](templates/lfs/nucleo-f303k8) |
+| STM32 Nucleo-L432KC | Cortex-M4  | [mcu datasheet](https://www.st.com/resource/en/reference_manual/dm00151940-stm32l41xxx42xxx43xxx44xxx45xxx46xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf) | [board datasheet](https://www.st.com/resource/en/datasheet/stm32l432kc.pdf) | [blinky](templates/blinky/nucleo-l432kc), [cli](templates/cli/nucleo-l432kc), [lfs](templates/lfs/nucleo-l432kc) |
+| SAME54 Xplained     | Cortex-M4  | [mcu datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-D5x-E5x-Family-Data-Sheet-DS60001507.pdf) | [board datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/70005321A.pdf) | [blinky](templates/blinky/same54-xplained) |
+| TI EK-TM4C1294XL    | Cortex-M4F | [mcu datasheet](https://www.ti.com/lit/ds/symlink/tm4c1294ncpdt.pdf) | [board datasheet](https://www.ti.com/lit/ug/spmu365c/spmu365c.pdf) | [webui](steps/step-7-webserver/ek-tm4c1294xl) | 
+| RP2040 Pico-W5500   | Cortex-M0+ | [mcu datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf) | [board datasheet](https://docs.wiznet.io/Product/iEthernet/W5500/w5500-evb-pico) | [webui](steps/step-7-webserver/pico-w5500/) |
+| ESP32-C3            | RISCV      | [mcu datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c3_technical_reference_manual_en.pdf) | | [blinky](templates/blinky/esp32-c3) |
 
-In this tutorial we'll use the Nucleo-F429ZI development board, so
-go ahead and download the "mcu datasheet" and the "board datasheet" for it.
+In this tutorial we'll use the **Nucleo-F429ZI** development board, so
+go ahead and download the mcu datasheet and the board datasheet for it.
 
 
 ## About me
@@ -91,7 +93,7 @@ enter the following commands to download this repository and build an example:
 
 ```sh
 git clone https://github.com/cpq/bare-metal-programming-guide
-cd bare-metal-programming-guide/step-0-minimal
+cd bare-metal-programming-guide/steps/step-0-minimal
 make
 ```
 
@@ -327,7 +329,7 @@ firmware entry point).
 
 So now we know, that we must make sure that our firmware should be composed in
 a way that the 2nd 32-bit value in the flash should contain an address of
-out boot function. When MCU boots, it'll read that address from flash, and
+our boot function. When MCU boots, it'll read that address from flash, and
 jump to our boot function.
 
 
@@ -357,7 +359,7 @@ For function `_reset()`, we have used GCC-specific attributes `naked` and
 be created by the compiler, and that function does not return.
 
 The `void (*const tab[16 + 91])(void)` expression means: define an array of 16
-+ 91 pointers to functions which return nothing (void) and take to arguments.
+\+ 91 pointers to functions which return nothing (void) and take no arguments (void).
 Each such function is an IRQ handler (Interrupt ReQuest handler). An array of
 those handlers is called a vector table.
 
@@ -396,7 +398,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
 
 Note that VMA/LMA addresses for sections are set to 0 - meaning, `main.o`
 is not yet a complete firmware, because it does not contain the information
-where those section should be loaded in the address space. We need to use
+where those sections should be loaded in the address space. We need to use
 a linker to produce a full firmware `firmware.elf` from `main.o`.
 
 The section .text contains firmware code, in our case it is just a _reset()
@@ -417,7 +419,7 @@ address space, and which symbols to create.
 ### Linker script
 
 Create a file `link.ld`, and copy-paste contents from
-[step-0-minimal/link.ld](step-0-minimal/link.ld). Below is the explanation:
+[steps/step-0-minimal/link.ld](steps/step-0-minimal/link.ld). Below is the explanation:
 
 ```
 ENTRY(_reset);
@@ -495,8 +497,8 @@ int main(void) {
 __attribute__((naked, noreturn)) void _reset(void) {
   // memset .bss to zero, and copy .data section to RAM region
   extern long _sbss, _ebss, _sdata, _edata, _sidata;
-  for (long *src = &_sbss; src < &_ebss; src++) *src = 0;
-  for (long *src = &_sdata, *dst = &_sidata; src < &_edata;) *src++ = *dst++;
+  for (long *dst = &_sbss; dst < &_ebss; dst++) *dst = 0;
+  for (long *dst = &_sdata, *src = &_sidata; dst < &_edata;) *dst++ = *src++;
 
   main();             // Call main()
   for (;;) (void) 0;  // Infinite loop in the case if main() returns
@@ -513,7 +515,7 @@ sections were built according to the linker script: `.vectors` lies at the very
 beginning of flash, then `.text` follows immediately after, and `.data` lies
 far above. Addresses in `.text` are in the flash region, and addresses in
 `.data` are in the RAM region.  If some function has address e.g. `0x8000100`,
-then it it located exactly at that address on flash. But if the code accesses
+then it is located exactly at that address on flash. But if the code accesses
 some variable in the `.data` section by the address e.g. `0x20000200`, then
 there is nothing at that address, because at boot, `.data` section in the
 `firmware.bin` resides in flash! That's why the startup code must relocate
@@ -692,7 +694,7 @@ clean:
 	rm -rf firmware.*
 ```
 
-A complete project source code you can find in [step-0-minimal](step-0-minimal) folder.
+A complete project source code you can find in [steps/step-0-minimal](steps/step-0-minimal) folder.
 
 ## Blinky LED
 
@@ -754,8 +756,8 @@ struct rcc {
 #define RCC ((struct rcc *) 0x40023800)
 ```
 
-In the AHB1ENR register documentation we see that bits from 0 to 8 inclusive
-set the clock for GPIO banks GPIOA - GPIOE:
+In the AHB1ENR register documentation we see that bits from 0 to 10 inclusive
+set the clock for GPIO banks GPIOA - GPIOK:
 
 ```c
 int main(void) {
@@ -803,7 +805,7 @@ Finally, we're ready to modify our main loop to implement LED blinking:
 ```
 
 Run `make flash` and enjoy blue LED flashing.
-A complete project source code you can find in [step-1-blinky](step-1-blinky).
+A complete project source code you can find in [steps/step-1-blinky](steps/step-1-blinky).
 
 ## Blinky with SysTick interrupt
 
@@ -868,12 +870,12 @@ called to increment `s_tick` variable. Here how it looks like on a time scale:
 ![](images/systick.svg)
 
 
-The `volatile` specifier is required here becase `s_ticks` is modified by the
+The `volatile` specifier is required here because `s_ticks` is modified by the
 interrupt handler. `volatile` prevents the compiler to optimise/cache `s_ticks`
 value in a CPU register: instead, generated code always accesses memory.  That
 is why `volatile` keywords is present in the peripheral struct definitions,
 too. Since this is important to understand, let's demonstrate that on a simple
-function: Arduino's `delay()`. Let is use our `s_ticks` variable:
+function: Arduino's `delay()`. Let it use our `s_ticks` variable:
 
 ```c
 void delay(unsigned ms) {            // This function waits "ms" milliseconds
@@ -897,7 +899,7 @@ and compare generated machine code:
  bx      lr                             |  bx      lr
 ```
 
-If there is no `volalile`, the `delay()` function will loop forever and never
+If there is no `volatile`, the `delay()` function will loop forever and never
 return. That is because it caches (optimises) the value of `s_ticks` in a
 register and never updates it. A compiler does that because it doesn't know
 that `s_ticks` can be updated elsewhere - by the interrupt handler!  The
@@ -927,7 +929,7 @@ bool timer_expired(uint32_t *t, uint32_t prd, uint32_t now) {
 ```
 
 Now we are ready to update our main loop and use a precise timer for LED blink.
-For example, let's use 250 milliseconds blinking interval:
+For example, let's use 500 milliseconds blinking interval:
 
 ```c
   uint32_t timer, period = 500;          // Declare timer and 500ms period
@@ -946,7 +948,7 @@ main loop (also called superloop) non-blocking. That means that inside that
 loop we can perform many actions - for example, have different timers with
 different periods, and they all will be triggered in time.
 
-A complete project source code you can find in [step-2-systick](step-2-systick) folder.
+A complete project source code you can find in [steps/step-2-systick](steps/step-2-systick) folder.
 
 ## Add UART debug output
 
@@ -1096,7 +1098,7 @@ hi
 hi
 ```
 
-A complete project source code you can find in [step-3-uart](step-3-uart) folder.
+A complete project source code you can find in [steps/step-3-uart](steps/step-3-uart) folder.
 
 ## Redirect printf() to UART
 
@@ -1132,7 +1134,7 @@ mechanism. We use newlib, so let's modify `_write()` syscall to print to the
 UART3.
 
 Before that, let's organise our source code in the following way:
-- move all API definitions to the file `hal.h` (Harware Abstraction Layer)
+- move all API definitions to the file `hal.h` (Hardware Abstraction Layer)
 - move startup code to `startup.c`
 - create an empty file `syscalls.c` for newlib "syscalls"
 - modify Makefile to add `syscalls.c` and `startup.c` to the build
@@ -1258,7 +1260,7 @@ LED: 0, tick: 1000
 
 Congratulations! We learned how IO retargeting works, and
 can now printf-debug our firmware.
-A complete project source code you can find in [step-4-printf](step-4-printf) folder.
+A complete project source code you can find in [steps/step-4-printf](steps/step-4-printf) folder.
 
 ## Debug with Segger Ozone
 
@@ -1387,7 +1389,7 @@ https://github.com/cpq/bare-metal-programming-guide/blob/785aa2ead0432fc67327781
 
 We have left with a project template that can be reused for the future
 projects.  A complete project source code you can find in
-[step-5-cmsis](step-5-cmsis)
+[steps/step-5-cmsis](steps/step-5-cmsis)
 
 
 ## Setting up clocks
@@ -1444,7 +1446,7 @@ adjust the baud rate calculation for the UART:
 https://github.com/cpq/bare-metal-programming-guide/blob/9a3f9bc7b07d6a2a114581979e5b6715754c87c1/step-6-clock/hal.h#L90-L107
 
 Rebuild and reflash, and our board runs at its maximum speed, 180MHz!
-A complete project source code you can find in [step-6-clock](step-6-clock)
+A complete project source code you can find in [steps/step-6-clock](steps/step-6-clock)
 
 ## Web server with device dashboard
 
@@ -1452,7 +1454,7 @@ The Nucleo-F429ZI comes with Ethernet on-board. Ethernet hardware needs
 two components: a PHY (which transmits/receives electrical signals to the
 media like copper, optical cable, etc) and MAC (which drives PHY controller).
 On our Nucleo, the MAC controller is built-in, and the PHY is external
-(specifically, is is Microchip's LAN8720a).
+(specifically, it is Microchip's LAN8720a).
 
 MAC and PHY can talk several interfaces, we'll use RMII. For that, a bunch
 of pins must be configured to use their Alternative Function (AF).
@@ -1595,7 +1597,7 @@ for more details.
 ![Device dashboard](https://raw.githubusercontent.com/cesanta/mongoose/master/examples/device-dashboard/screenshots/dashboard.png)
 
 A complete project source code you can find in
-[step-7-webserver](step-7-webserver) directory.
+[steps/step-7-webserver](steps/step-7-webserver) directory.
 
 ## Automated firmware builds (software CI)
 
@@ -1759,8 +1761,8 @@ bc3 2 main.c:65:main                    Ethernet: up
 fab 2 main.c:65:main                    Ethernet: up
 ```
 
-Done! Now, our automatic tests ensure that the firmware can be built, that is
-it bootable, that it initialises the network stack correctly.  This mechanism
+Done! Now, our automatic tests ensure that the firmware can be built, that
+it is bootable, that it initialises the network stack correctly.  This mechanism
 can be easily extended: just add more complex actions in your firmware binary,
 print the result to the UART, and check for the expected output in the test.
 

@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Build Status]( https://github.com/cpq/bare-metal-programming-guide/workflows/build/badge.svg)](https://github.com/cpq/bare-metal-programming-guide/actions)
 
-[English](README.md) | 中文
+[English](README.md) | 中文 | [Türkçe](README_tr-TR.md)
 
 本指南是为那些希望用GCC编译器和数据手册而无需其他任何东西就能开始为微控制器（单片机）编程的开发者而写的。本指南中的基础知识可以帮助你更好地理解像STM32Cube、Keil、Arduino和其他框架或IDE是怎么工作的。
 
@@ -402,8 +402,8 @@ int main(void) {
 __attribute__((naked, noreturn)) void _reset(void) {
   // memset .bss to zero, and copy .data section to RAM region
   extern long _sbss, _ebss, _sdata, _edata, _sidata;
-  for (long *src = &_sbss; src < &_ebss; src++) *src = 0;
-  for (long *src = &_sdata, *dst = &_sidata; src < &_edata;) *src++ = *dst++;
+  for (long *dst = &_sbss; dst < &_ebss; dst++) *dst = 0;
+  for (long *dst = &_sdata, *src = &_sidata; dst < &_edata;) *dst++ = *src++;
 
   main();             // Call main()
   for (;;) (void) 0;  // Infinite loop in the case if main() returns

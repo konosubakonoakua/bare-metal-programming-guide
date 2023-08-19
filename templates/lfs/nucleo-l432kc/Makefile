@@ -1,9 +1,9 @@
-CFLAGS  ?=  -W -Wall -Wextra -Werror -Wundef -Wshadow -Wdouble-promotion -Wformat-truncation -fno-common \
-            -g3 -Os -ffunction-sections -fdata-sections -Wno-shadow \
-            -I. -Iinclude -Icmsis_core/CMSIS/Core/Include -Icmsis_l4/Include -Ilittlefs \
-            -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
+CFLAGS ?= -W -Wall -Wextra -Werror -Wundef -Wshadow -Wdouble-promotion -Wformat-truncation -fno-common
+CFLAGS += -g3 -Os -ffunction-sections -fdata-sections -Wno-shadow
+CFLAGS += -I. -Icmsis_core/CMSIS/Core/Include -Icmsis_l4/Include -Ilittlefs
+CFLAGS += -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
 LDFLAGS ?= -Tlink.ld -nostartfiles -nostdlib --specs nano.specs -lc -lgcc -Wl,--gc-sections -Wl,-Map=$@.map
-SOURCES = main.c syscalls.c sysinit.c littlefs/lfs.c littlefs/lfs_util.c
+SOURCES = main.c syscalls.c littlefs/lfs.c littlefs/lfs_util.c
 SOURCES += cmsis_l4/Source/Templates/gcc/startup_stm32l432xx.s # ST startup file. Compiler-dependent!
 
 ifeq ($(OS),Windows_NT)
